@@ -1,9 +1,10 @@
-use std::str::Utf8Error;
-use super::method::Method;
+
+use super::method::{Method,MethodError };
 use std::convert::TryFrom;
 use std::error::Error;
 use std::fmt::{Result as FmtResult,Display, Formatter, Debug };
 use std::str;
+use std::str::Utf8Error;
 
 
 pub struct Request{
@@ -26,6 +27,8 @@ impl TryFrom<&[u8]> for Request {
        if protocol != "HTTP/1.1" {
         return Err(ParseError::InvalidProtocol);
        }
+
+       let method: Method = method.parse()?;
 
         unimplemented!()
     }
@@ -59,6 +62,12 @@ impl ParseError {
             Self::InvalidMethod =>  "Invalid Method",
 
         }
+    }
+}
+
+impl From <MethodError> for ParseError {
+    fn from(_: MethodError) -> Self {
+        Self::InvalidEncoding
     }
 }
 
