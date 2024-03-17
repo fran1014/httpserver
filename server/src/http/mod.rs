@@ -1,10 +1,9 @@
 pub use method::Method;
+pub use query_string::{QueryString, Value as QueryStringValue};
 pub use request::ParseError;
 pub use request::Request;
-pub use query_string::{QueryString, Value as QueryStringValue};
 pub use response::Response;
 pub use status_code::StatusCode;
-
 
 pub mod method;
 pub mod query_string;
