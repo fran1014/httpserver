@@ -1,14 +1,17 @@
 use std::collections::HashMap;
 
-// Make enum public
+
+
+
+#[derive(Debug)]
+pub struct QueryString<'buf> {
+    pub data: HashMap<&'buf str, Value<'buf>>,
+}
+
+#[derive(Debug)]
 pub enum Value<'buf> {
     Single(&'buf str),
     Multiple(Vec<&'buf str>),
-}
-
-// Make struct public
-pub struct QueryString<'buf> {
-    pub data: HashMap<&'buf str, Value<'buf>>,
 }
 
 impl<'buf> From<&'buf str> for QueryString<'buf> {
