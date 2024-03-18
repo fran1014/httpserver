@@ -42,4 +42,4 @@ impl Handler for WebsiteHandler {
             _ => Response::new(StatusCode::NotFound, None),
         }
     }
-}
+} 
